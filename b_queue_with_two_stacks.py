@@ -81,7 +81,7 @@ print(queue.peek(), queue.front, queue.rear) # first -1 1
 print(queue.dequeue(), queue.front, queue.rear) # first 0 1
 print(queue.dequeue(), queue.front, queue.rear) # second 1 1
 
-class Queue_with_two_stacks:
+class QueueWithTwoStacks:
 		front = -1 # front는 두번째로 삽입하는 스택(데이터를 출력할)의 top
 		rear = -1 # rear는 (이동 전) 첫번째로 삽입하는 스택(데이터를 입력할)의 top, 이동 후에는 다시 -1로 초기화(마지막으로 삽입한 데이터가 출력용 스택으로 옮겨지지만 top이 아니므로 좀 애매하고 또, 데이터가 입력될 위치를 표시하는게 더 적절하다고 생각하여 -1로 초기화함)
 
@@ -120,7 +120,7 @@ class Queue_with_two_stacks:
 				return self.stack_last_out.peek() # self.stack_last_out.stack[self.stack_last_out.top]
 
 # Queue with two stack test
-queue_with_two_stacks = Queue_with_two_stacks()
+queue_with_two_stacks = QueueWithTwoStacks()
 print(queue_with_two_stacks.front, queue_with_two_stacks.rear) # -1 -1
 queue_with_two_stacks.enqueue('first')
 print(queue_with_two_stacks.front, queue_with_two_stacks.rear) # -1 0
