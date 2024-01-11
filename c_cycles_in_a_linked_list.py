@@ -1,35 +1,46 @@
-class LinkedList:
-		class Node:
-				def __init__(self, data):
-						self.data = data
-						self.next = None
-    
+# 연결 리스트 안에 있는 사이클(루프)을 탐지하라. 만약 리스트가 비어있다면 head는 null일 것이다. 정의된 Node는 다음과 같다.
+class Node:
 		def __init__(self):
-				self.head = None
-				self.tail = None
-    
-		def is_empty(self):
-				return self.head is None
-    
-		def push(self, data):
-				data_in = self.Node(data)
-    
-				if (self.tail is not None):
-						self.tail.next = data_in
-				self.tail = data_in
-    
-				if (self.is_empty()):
-						self.head = None
-    
-		def pop(self):
-				data_out = self.head.data
-				self.head = self.head.next
-				return data_out
-    
-    # 여기서부터, 어떻게 해야 index번째에 있는 데이터를 찾아서 삽입/삭제할 수 있을까?
-		def insert(self, data, index):
-				data_in = self.Node(data)
-				range(index)
+				self.data = ''
+				self.next = None
+   
+		def __init__(self, data):
+				self.data = data
+				self.next = None
+
+def has_cycle(head: Node):
+		if (head is None):
+				return False
   
-		def remove(self, index):
-				range(index)
+		fast_node = head.next
+		slow_node = head
+  
+		while (fast_node is not None) and (fast_node.next is not None) and (slow_node is not None):
+				if (fast_node is slow_node):
+						return True
+
+				fast_node = head.next.next
+				slow_node = head.next
+    
+		return False
+
+# test
+node_list_head = Node('first')
+node_list_head.next = Node('second')
+node_list_head.next.next = Node('third')
+node_list_head.next.next.next = Node('fourth')
+node_list_head.next.next.next.next = Node('fifth')
+
+result1 = has_cycle(node_list_head)
+print(result1)
+
+node_list_head.next.next.next.next.next = node_list_head
+print(node_list_head is node_list_head.next.next.next.next.next)
+
+result2 = has_cycle(node_list_head)
+print(result2)
+
+node_list_head.next.next.next.next.next.next = Node('sixth')
+
+result3 = has_cycle(node_list_head)
+print(result3)
