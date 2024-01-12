@@ -19,8 +19,8 @@ def has_cycle(head: Node):
 				if (fast_node is slow_node):
 						return True
 
-				fast_node = head.next.next
-				slow_node = head.next
+				fast_node = fast_node.next.next
+				slow_node = slow_node.next
     
 		return False
 
@@ -32,15 +32,15 @@ node_list_head.next.next.next = Node('fourth')
 node_list_head.next.next.next.next = Node('fifth')
 
 result1 = has_cycle(node_list_head)
-print(result1)
+print(result1) # False
 
 node_list_head.next.next.next.next.next = node_list_head
-print(node_list_head is node_list_head.next.next.next.next.next)
 
 result2 = has_cycle(node_list_head)
-print(result2)
+print(result2) # True
 
+# 루프가 반복적으로 돌지 않고 빠져나올수 있다면 상관없는 걸까?
 node_list_head.next.next.next.next.next.next = Node('sixth')
 
 result3 = has_cycle(node_list_head)
-print(result3)
+print(result3) # False
